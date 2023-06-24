@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import css from './Modal.module.css';
 
 class Modal extends Component {
+  state = {};
   onKeyDown = e => {
     if (e.code === 'Escape') {
       this.props.onClose();
