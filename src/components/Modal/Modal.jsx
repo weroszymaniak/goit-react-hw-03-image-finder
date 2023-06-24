@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import css from './Modal.module.css';
 
 class Modal extends Component {
-  state = {};
+  componentDidMount() {
+    window.addEventListener('keydown', this.onKeyDown);
+    document.body.style.overflow = 'hidden';
+  }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.onKeyDown);
+    document.body.style.overflow = 'visible';
+  }
   onKeyDown = e => {
     if (e.code === 'Escape') {
       this.props.onClose();
@@ -14,12 +21,6 @@ class Modal extends Component {
       this.props.onClose();
     }
   };
-  componentDidMount() {
-    window.addEventListener('keydown', this.onKeyDown);
-  }
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.onKeyDown);
-  }
 
   render() {
     const { largeImageURL, tags } = this.props;
