@@ -7,7 +7,7 @@ class Searchbar extends Component {
   };
 
   onSearch = e => {
-    e.prevent.default();
+    e.preventDefault();
     this.props.getInputValue(this.state.input);
     this.setState({ input: '' });
     console.log('event search');

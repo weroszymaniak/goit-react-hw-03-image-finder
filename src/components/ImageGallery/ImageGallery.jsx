@@ -21,6 +21,8 @@ class ImageGallery extends Component {
   }
   addImages = () => {
     const { inputValue, page } = this.props;
+    console.log('event adding');
+
     fetchImages(inputValue, page)
       .then(response => {
         this.setState({
@@ -46,7 +48,7 @@ class ImageGallery extends Component {
 
   render() {
     const { images, status } = this.state;
-    if (status === 'pending') {
+    if (status === 'neutral') {
       return <Loader />;
     }
 
@@ -64,7 +66,7 @@ class ImageGallery extends Component {
             ))}
           </ul>
           {this.state.images.length !== 0 ? (
-            <Button onClick={this.props.loadMoreBtn} />
+            <Button onClick={this.props.loadMore} />
           ) : (
             alert('No results')
           )}
