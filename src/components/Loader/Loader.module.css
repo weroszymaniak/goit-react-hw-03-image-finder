@@ -5,6 +5,8 @@
   border-radius: 50%;
   display: inline-block;
   position: relative;
+  top: 40%;
+  left: 50%;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }

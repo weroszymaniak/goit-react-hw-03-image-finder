@@ -49,14 +49,8 @@ class App extends Component {
         images: [...state.images, ...sortedImages],
         isLoading: false,
         error: '',
-        totalPages: 3,
+        totalPages: Math.ceil(data.totalHits / 12),
       }));
-      // this.setState(prevState => ({
-      //   images: [...prevState.images, ...sortedImages],
-      //   isLoading: false,
-      //   error: '',
-      //   totalPages: 3,
-      // }));
 
       const sort = [...sortedImages];
       console.log(this.state);
@@ -80,15 +74,6 @@ class App extends Component {
     }));
   };
 
-  // getsearch = search => {
-  //   this.setState({ search: search, page: 1 });
-  // };
-
-  // onLargeUrl = url => {
-  //   this.onChangeModal();
-  //   this.setState({ modalPicture: url });
-  // };
-
   render() {
     const { images, isLoading, currentPage, totalPages } = this.state;
     return (
@@ -97,7 +82,9 @@ class App extends Component {
         {images.length > 0 ? (
           <ImageGallery images={images} />
         ) : (
-          <p>Image gallery is empty</p>
+          <p style={{ textAlign: 'center', marginTop: '25px' }}>
+            Image gallery is empty
+          </p>
         )}
         {isLoading && <Loader />}
         {images.length > 0 && totalPages !== currentPage && !isLoading && (
