@@ -4,7 +4,7 @@ import css from './Searchbar.module.css';
 class Searchbar extends Component {
   state = {
     inputValue: '',
-    search: '',
+    // search: '',
   };
   onChange = e => {
     this.setState({ inputValue: e.target.value });
@@ -12,19 +12,22 @@ class Searchbar extends Component {
     console.log('event change');
   };
   handleSubmit = e => {
+    const { inputValue } = this.state;
     e.preventDefault();
-    if (!this.state.search.trim()) {
-      return;
-    }
-    this.props.onSubmit(this.state.search);
-
-    console.log('event search', this.state.search);
+    const query = inputValue;
+    this.props.onSubmit(query);
+    e.target.reset();
+    console.log(query, 'query');
+    // if (!this.state.search.trim()) {
+    //   return;
+    // }
+    // this.props.onSubmit(this.state.search);
   };
 
   render() {
     return (
       <header className={css.searchbar}>
-        <form onSubmit={this.onSubmit} className={css.form}>
+        <form onSubmit={this.handleSubmit} className={css.form}>
           <button type="submit" className={css.button}>
             <span>Search</span>
           </button>

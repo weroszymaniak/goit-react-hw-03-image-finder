@@ -15,12 +15,13 @@ class App extends Component {
     totalPages: 0,
   };
 
-  componentDidUpdate(prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (
       prevState.search !== this.state.search ||
       prevState.currentPage !== this.state.currentPage
     ) {
       this.addImages();
+      console.log('addin images');
     }
   }
   handleSubmit = query => {
@@ -34,21 +35,40 @@ class App extends Component {
 
       const data = await API.fetchImages(search, currentPage);
 
+      console.log(data, 'data name');
+      console.log(data.hits, 'data hits');
+
       if (data.hits.length === 0) {
         return 'Sorry image not found';
       }
 
       const sortedImages = API.sortedImages(data.hits);
+      console.log(sortedImages, 'sortedImages show');
 
       this.setState(state => ({
         images: [...state.images, ...sortedImages],
         isLoading: false,
         error: '',
-        totalPages: Math.ceil(data.totalHits / 12),
+        totalPages: 3,
       }));
-      console.log('event adding');
+      // this.setState(prevState => ({
+      //   images: [...prevState.images, ...sortedImages],
+      //   isLoading: false,
+      //   error: '',
+      //   totalPages: 3,
+      // }));
+
+      const sort = [...sortedImages];
+      console.log(this.state);
+      console.log(
+        sort,
+        'event adding',
+        this.state.images,
+        this.state.isLoading
+      );
     } catch (error) {
       this.setState({ error: 'Something went wrong!' });
+      console.log('error adding', error);
     } finally {
       this.setState({ isLoading: false });
     }

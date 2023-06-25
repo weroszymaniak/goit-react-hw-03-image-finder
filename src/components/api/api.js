@@ -13,7 +13,7 @@ export const fetchImages = async (query, page) => {
   return response.data;
 };
 
-// export const sortedImages = imagesArray =>
-//   imagesArray.map(({ id, tags, webformatURL, largeImageURL }) => {
-//     return { id, tags, webformatURL, largeImageURL };
-//   });
+export const sortedImages = imagesArray =>
+  imagesArray.map(({ id, tags, webformatURL, largeImageURL }) => {
+    return { id, tags, webformatURL, largeImageURL };
+  });

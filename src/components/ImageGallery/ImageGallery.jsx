@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 function ImageGallery({ images }) {
   return (
     <ul className={css.gallery}>
-      {images.map(({ image }) => (
+      {images.map(image => (
         <ImageGalleryItem key={image.id} image={image} />
       ))}
     </ul>
